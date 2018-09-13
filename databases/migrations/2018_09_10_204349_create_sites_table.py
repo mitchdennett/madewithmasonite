@@ -10,7 +10,7 @@ class CreateSitesTable(Migration):
         with self.schema.create('sites') as table:
             table.increments('id')
             table.string('url')
-            table.string('image_url')
+            table.string('image_url').nullable()
             table.string('site_name')
             table.string('submitter_name')
             table.string('submitter_email')

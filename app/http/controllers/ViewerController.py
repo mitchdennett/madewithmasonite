@@ -7,6 +7,7 @@ class ViewerController:
 
     def show(self, Application, Request):
         id = Request.param('id')
+        print(id)
         prev_page = -1
         
         if id == False:
