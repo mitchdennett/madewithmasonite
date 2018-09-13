@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" style="height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css">
+
+    <title>{{ app.NAME }}</title>
+
+    <!-- Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
+</head>
+
+<body style="background-color: whitesmoke; min-height: 100%;">
+    <div class="container" style="justify-content: center;display: flex">
+        <a class="navbar-item" href="https://bulma.io" style="width:205px">
+            <img style="max-height: 100%" src="static/masonitelogo.gif" alt="masonitelogo" width="180">
+        </a>
+    </div>
+    <div class="container" style="font-family: Hammersmith One,sans-serif !important;max-width: 60rem!important;">
+        <h1 class="title" style="font-size:64px;text-align: center">
+            The official showcase of Masonite sites.
+        </h1>
+        <!-- <h2 class="subtitle">
+            Hero subtitle
+        </h2> -->
+    </div>
+    <div class="container" style="max-width: 60rem!important;margin-top: 20px;" >
+            {% for site in sites %}
+                {% if loop.index0 is eq(0) %}
+                    <div class="tile is-ancestor">
+                {% endif %}
+
+                {% if loop.index0 is divisibleby(3) %}
+                    </div>
+                    <div class="tile is-ancestor">
+                        <div class="tile is-4" style="padding: 8px;">
+                            <div class="card" style="padding: 0;">
+                                <div class="card-image">
+                                    <figure class="image is-8by6">
+                                    <img src="{{ site.image_url }}" alt="Placeholder image" style="clip: rect(0px,30px,100px,0px);">
+                                    </figure>
+                                </div>
+                                <div class="card-content" style="text-align: center">
+                                    <p class="title">{{ site.site_name }}</p>
+                                
+                                    <div class="content">
+                                        {{ site.url }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                {% else %}
+                    <div class="tile is-4" style="padding: 8px;">
+                        <div class="card" style="padding: 0;">
+                            <div class="card-image">
+                                <figure class="image is-8by6">
+                                <img src="{{ site.image_url }}" alt="Placeholder image" style="clip: rect(0px,30px,100px,0px);">
+                                </figure>
+                            </div>
+                            <div class="card-content" style="text-align: center">
+                                <p class="title">{{ site.site_name }}</p>
+                            
+                                <div class="content">
+                                    {{ site.url }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+    </div>
+    <nav class="pagination is-rounded is-centered" role="navigation" aria-label="pagination" style="padding: 15px;">
+        {% if prev_page != -1 %}
+            <a class="pagination-previous" href="/{{ prev_page }}">Previous</a>
+        {% endif %}
+        {% if next_page != -1 %}
+            <a class="pagination-next" href="/{{ next_page }}">Next</a>
+        {% endif %}
+        
+        <ul class="pagination-list">
+            {% for page in page_array %}
+                {% if page == '...' %}
+                    <li><span class="pagination-ellipsis">&hellip;</span></li>
+                {% else %}
+                    {% if page == current_page %}
+                        <li><a class="pagination-link is-current" href="/{{ page }}" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a class="pagination-link" href="/{{ page }}" aria-label="Goto page {{ page }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+    <a class="button is-info is-rounded is-medium" style="position: fixed;bottom: 10px;right: 10px;">Submit</a>
+</body>
+
+</html>
