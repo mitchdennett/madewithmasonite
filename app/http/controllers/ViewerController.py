@@ -16,7 +16,7 @@ class ViewerController:
             id = int(id)
             sites = Site.where('approved', True).paginate(15, id)
 
-        users_length = Site.count()
+        users_length = Site.where('approved', True).count()
         num_of_pages = math.ceil(users_length/15)
 
         next_page = id + 1
@@ -27,7 +27,10 @@ class ViewerController:
         if prev_page < 1:
             prev_page = -1
 
-        page_array = self.abbreviated_pages(num_of_pages, id)
+        if num_of_pages != 0:
+            page_array = self.abbreviated_pages(num_of_pages, id)
+        else:
+            page_array = [1]
         return view('viewer', {
             'app': Application,
             'sites': sites,
