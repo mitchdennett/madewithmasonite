@@ -20,6 +20,7 @@ from masonite.providers import (
 
 from app.providers.MiddlewareProvider import MiddlewareProvider
 from app.providers.UserModelProvider import UserModelProvider
+from masonite_heroku.providers import DeployProvider
 
 '''
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ PROVIDERS = [
     HelpersProvider,
 
     # Third Party Providers
+    DeployProvider,
 
     # Application Providers
     UserModelProvider,

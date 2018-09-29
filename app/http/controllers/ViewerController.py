@@ -7,15 +7,14 @@ class ViewerController:
 
     def show(self, Application, Request):
         id = Request.param('id')
-        print(id)
         prev_page = -1
         
         if id == False:
             id = 1
-            sites = Site.paginate(15, 1)
+            sites = Site.where('approved', True).paginate(15, 1)
         else:
             id = int(id)
-            sites = Site.paginate(15, id)
+            sites = Site.where('approved', True).paginate(15, id)
 
         users_length = Site.count()
         num_of_pages = math.ceil(users_length/15)
