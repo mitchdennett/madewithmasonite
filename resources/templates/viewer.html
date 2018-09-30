@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
 </head>
 
-<body style="background-color: whitesmoke; min-height: 100%;">
+<body style="background-color: whitesmoke; min-height: 100%;padding:20px">
     <div class="container" style="justify-content: center;display: flex">
         <a class="navbar-item" href="#" style="width:205px">
             <img style="max-height: 100%" src="static/masonitelogo.gif" alt="masonitelogo" width="180">
         </a>
     </div>
     <div class="container" style="font-family: Hammersmith One,sans-serif !important;max-width: 60rem!important;">
-        <h1 class="title" style="font-size:64px;text-align: center">
+        <h1 class="title is-size-2-mobile" style="font-size:4.5rem;text-align: center">
             The official showcase of Masonite sites.
         </h1>
         <!-- <h2 class="subtitle">
@@ -38,6 +38,26 @@
                     </div>
                     <div class="tile is-ancestor">
                         <div class="tile is-4" style="padding: 8px;">
+                            <a href="{{ site.url }}">
+                                <div class="card" style="padding: 0;">
+                                    <div class="card-image">
+                                        <figure class="image is-8by6">
+                                        <img src="{{ site.image_url }}" alt="Placeholder image" style="clip: rect(0px,30px,100px,0px);">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content" style="text-align: center">
+                                        <p class="title">{{ site.site_name }}</p>
+                                    
+                                        <div class="content">
+                                            {{ site.url }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>    
+                        </div>
+                {% else %}
+                    <div class="tile is-4" style="padding: 8px;">
+                        <a href="{{ site.url }}">
                             <div class="card" style="padding: 0;">
                                 <div class="card-image">
                                     <figure class="image is-8by6">
@@ -52,23 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                {% else %}
-                    <div class="tile is-4" style="padding: 8px;">
-                        <div class="card" style="padding: 0;">
-                            <div class="card-image">
-                                <figure class="image is-8by6">
-                                <img src="{{ site.image_url }}" alt="Placeholder image" style="clip: rect(0px,30px,100px,0px);">
-                                </figure>
-                            </div>
-                            <div class="card-content" style="text-align: center">
-                                <p class="title">{{ site.site_name }}</p>
-                            
-                                <div class="content">
-                                    {{ site.url }}
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 {% endif %}
             {% endfor %}
